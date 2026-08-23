@@ -105,6 +105,7 @@ def sync_global_skills(prune=False, fix=False):
         ("~/.gemini/skills", GEMINI_SKILLS_DIR),
         ("~/.gemini/config/skills", GEMINI_CONFIG_SKILLS_DIR),
         ("~/.claude/skills", CLAUDE_SKILLS_DIR),
+        ("~/.gemini/antigravity-cli/skills", os.path.expanduser('~/.gemini/antigravity-cli/skills')),
     ]
 
     for label, target_dir in target_dirs:
@@ -135,7 +136,14 @@ def sync_global_skills(prune=False, fix=False):
                 except OSError:
                     pass
             elif os.path.isdir(target_link):
-                print(f"  [OK (DIR)] {name}")
+                if os.path.exists(os.path.join(target_link, 'SKILL.md')):
+                    print(f"  [OK (DIR)] {name}")
+                elif fix:
+                    shutil.rmtree(target_link)
+                    os.symlink(src_path, target_link)
+                    print(f"    -> Replaced directory with symlink {target_link} -> {src_path}")
+                else:
+                    print(f"  [DIR (EMPTY/INVALID)] {name}")
 
 
 def bootstrap_project_skills(project_dir, skill_names, fix=False):
