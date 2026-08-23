@@ -33,6 +33,7 @@ CURATED_GLOBAL_SKILLS = {
     'image-gen-expert': os.path.join(GITHUB_DIR, 'skills-image-gen-expert/skills/image-gen-expert'),
     'codelab-creator': os.path.join(GITHUB_DIR, 'skills-codelab-creator/skills/codelab-creator'),
     'make-google-oss': os.path.join(GITHUB_DIR, 'gcx-make-google-oss/skills/make-google-oss'),
+    'knowledge-catalog': os.path.join(GITHUB_DIR, 'skills-knowledge-catalog/skills/knowledge-catalog'),
     'skill-sync': os.path.join(GITHUB_DIR, 'agent-skill-sync/skills/skill-sync')
 }
 
